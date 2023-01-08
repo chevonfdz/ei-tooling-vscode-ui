@@ -1,9 +1,18 @@
+import "reflect-metadata";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import "reflect-metadata"; // This was already added in the initial stage but should've been added with this commit.
+import { container, registry } from 'tsyringe';
+import ApiStateService from './services/api-state-service/api-state-service';
+
+@registry([
+  {
+    token: ApiStateService, useClass: ApiStateService
+  }
+])
+class RegisterService{}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
