@@ -1,15 +1,28 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
+import { connect } from 'react-redux'
+import { TApiState } from '../../../../redux-store/.globals/constants'
 
-type Props = {}
+type Props = {
+  apiState: TApiState 
+}
 
-type State = {}
-
-export default class CallMediator extends Component<Props, State> {
-  state = {}
+class CallMediator extends Component<Props> {
 
   render() {
     return (
-      <div>CallMediator</div>
+      <div>
+        <span>-------- CallMediator --------</span><br /><br />
+        {JSON.stringify(this.props.apiState)}
+        <br /><br />
+      </div>
     )
   }
 }
+
+const mapStateToProps = (state: TApiState) => {
+  return {
+    apiState: state
+  }
+}
+
+export default connect(mapStateToProps)(CallMediator);

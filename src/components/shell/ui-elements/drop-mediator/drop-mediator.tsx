@@ -1,15 +1,29 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
+import { container } from 'tsyringe';
+import ApiStateService from '../../../../services/api-state-service/api-state-service';
 
 type Props = {}
 
-type State = {}
+class DropMediator extends Component<Props> {
 
-export default class DropMediator extends Component<Props, State> {
-  state = {}
+  private apiStateService: ApiStateService;
+
+  constructor(props: Props) {
+    super(props);
+    this.apiStateService = container.resolve(ApiStateService);
+  }
 
   render() {
     return (
-      <div>DropMediator</div>
+      <div>
+        <span>-------- DropMediator --------</span><br />
+        <button onClick={() => {
+          this.apiStateService.testService();
+        }}>Test Api Service!</button>
+      </div>
+      
     )
   }
 }
+
+export default DropMediator;
